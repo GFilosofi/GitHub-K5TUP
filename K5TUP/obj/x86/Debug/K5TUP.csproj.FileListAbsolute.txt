@@ -1,0 +1,17 @@
+C:\Projects\kappafive\developement\sw\K5TUP\bin\Debug\K5TUP.exe
+C:\Projects\kappafive\developement\sw\K5TUP\bin\Debug\K5TUP.pdb
+C:\Projects\kappafive\developement\sw\K5TUP\bin\Debug\ANT_NET.dll
+C:\Projects\kappafive\developement\sw\K5TUP\bin\Debug\FTD2XX_NET.dll
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\ConnectButton.baml
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\MainWindow.baml
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\App.baml
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\MainWindow.g.cs
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\App.g.cs
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\K5TUP_MarkupCompile.cache
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\K5TUP.g.resources
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\K5TUP.Properties.Resources.resources
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\K5TUP.exe
+C:\Projects\kappafive\developement\sw\K5TUP\obj\x86\Debug\K5TUP.pdb

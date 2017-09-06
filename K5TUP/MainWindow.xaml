@@ -1,0 +1,65 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="K5TUP.MainWindow"
+        Title="MainWindow" Background="{x:Null}" Visibility="Visible" WindowStartupLocation="CenterScreen" BorderThickness="0" ResizeMode="NoResize" Foreground="Black" OpacityMask="Black" WindowStyle="None" Margin="0"
+        Icon="Images\LOGO.ico" d:DesignHeight="447" d:DesignWidth="888" SizeToContent="WidthAndHeight" FlowDirection="LeftToRight" VerticalContentAlignment="Top" BorderBrush="Black" Opacity="10" AllowsTransparency="True">
+    <Window.Resources>
+    	<XmlDataProvider x:Key="ComPorts" Source="CommsData.xml" XPath="/Comms/Ports" />
+    	<XmlDataProvider x:Key="ComSpeed" Source="CommsData.xml" XPath="/Comms/Baud" />
+        <XmlDataProvider x:Key="DevNames" Source="DevicesData.xml" XPath="/Devs/Name" />
+    </Window.Resources>
+	<Border CornerRadius="10" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,0" MouseDown="Move_Window" Width="830" Height="389">
+		<Border.Background>
+			<LinearGradientBrush EndPoint="0.178,0.939" MappingMode="RelativeToBoundingBox" StartPoint="-0.100,0.209">
+				<GradientStop Color="DarkBlue" Offset="0.061"/>
+				<GradientStop Color="White" Offset="1.1"/>
+			</LinearGradientBrush>
+		</Border.Background>
+		<Grid Margin="0" Width="830">
+                <Grid.ColumnDefinitions>
+				<ColumnDefinition Width="85" />
+                <ColumnDefinition Width="129*" />
+                <ColumnDefinition Width="154*" />
+                <ColumnDefinition Width="122*" />
+                <ColumnDefinition Width="272*" />
+                <ColumnDefinition Width="68*" />
+            </Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="22.243" />
+				<RowDefinition Height="18.61" />
+                <RowDefinition Height="304*" />
+			</Grid.RowDefinitions>
+            <ComboBox Grid.Row="2" Height="20" HorizontalAlignment="Left" Name="Device_Name" VerticalAlignment="Top" Margin="0,43,0,0" Grid.Column="1" Width="123" Grid.ColumnSpan="2" ToolTip="select a device" />
+            <ComboBox Grid.Row="2" Height="20" HorizontalAlignment="Left" x:Name="Comm_Port_Names" Margin="0,64,0,262" Grid.Column="1" Width="123" Grid.ColumnSpan="2" SelectionChanged="Comm_Port_Names_SelectionChanged" ToolTip="select the COM port associated to the selected device"/>
+            <ComboBox Grid.Row="2" Height="20" HorizontalAlignment="Left" x:Name="Baud_Rates" Margin="0,85,0,241" Grid.Column="1" Width="123" Grid.ColumnSpan="2" ToolTip="select the baud-rate associated to the selected device"/>
+            <ComboBox Grid.Row="2" Height="20" HorizontalAlignment="Left" x:Name="MsgData" Margin="0,109,0,217" Grid.Column="1" Grid.ColumnSpan="3" Width="403" SelectionChanged="MsgData_SelectionChanged" ToolTip="select either a command or a test"/>
+            <TextBox x:Name ="SerialData" Grid.Row="2" Height="20" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="0,133,2,193" Grid.Column="1" Grid.ColumnSpan="3" TextChanged="SerialData_TextChanged" ToolTip="edit/select either a command or a test"/>
+            <TextBlock Grid.Row="2" Height="20" TextAlignment="Center" Text="Device Name" Foreground="White" VerticalAlignment="Bottom" Margin="0,0,0,282" Opacity="1" />
+            <TextBlock Grid.Row="2" Height="20" TextAlignment="Center" Text="Com Port" Foreground="White" VerticalAlignment="Bottom" Margin="0,0,0,262" Opacity="1" />
+            <TextBlock Grid.Row="2" Height="20" TextAlignment="Center" Text="Baud Rate" Foreground="White" VerticalAlignment="Top" Margin="-1,86,1,0" Opacity="1" Visibility="Visible" />
+            <TextBlock Grid.Row="2" Height="20" TextAlignment="Center" Text="Select Box" Foreground="White" VerticalAlignment="Bottom" Margin="0,0,0,216" Opacity="1" />
+            <TextBlock Grid.Row="2" Height="20" TextAlignment="Center" Text="Send Box" Foreground="White" Margin="2,0,0,192" VerticalAlignment="Bottom" />
+            <TextBlock Grid.Row="2" Height="20" TextAlignment="Center" Text="Receive Box" Foreground="White" VerticalAlignment="Bottom" Margin="-2,0,0,97" />
+            <RichTextBox Grid.Row="2" x:Name="ReceiveBox" Margin="0,156,0,23" HorizontalAlignment="Left" Width="402" ScrollViewer.VerticalScrollBarVisibility="Auto" ClipToBounds="False" Grid.Column="1" Grid.ColumnSpan="3" />
+            <Button Content="Select" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Sel_Data" Style="{DynamicResource Send_Btn_Style}" Height="32" Width="73" Margin="7,98,0,0" Name="Sel_btn" />
+            <Button Content="Send/Exec" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Send_Data" Style="{DynamicResource Send_Btn_Style}" Height="32" Width="73" Margin="7,0,0,182" Name="Send_btn" ToolTip="send (execute) the selected command (test)" />
+            <Button Content="Button" Grid.Column="5" RenderTransformOrigin="1.684,0.257" Height="20" Style="{DynamicResource Close_Btn_Stle}" HorizontalAlignment="Right" Width="19" Margin="0,8,5,13" Click="Close_Form" Grid.RowSpan="2" />
+			<Button Content="Button" Grid.Column="5" HorizontalAlignment="Right" Margin="0,8,25,13" Width="19" Height="20" Style="{DynamicResource Maximise_Btn_Style}" Click="Max_size" Grid.RowSpan="2" />
+			<Button Content="Button" Grid.Column="4" HorizontalAlignment="Right" Margin="0,8,45,13" Width="19" Height="20" Style="{DynamicResource Minimise_Btn_Styl}" Click="Min_size" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            <Button HorizontalAlignment="Right" Content="Connect" Click="Connect_Comms" x:Name="Connect_btn" Style="{DynamicResource Connect_Btn_Style}" Width="70" Margin="0,42,89,241" Grid.Column="2" Grid.Row="2" />
+            <ProgressBar Grid.Column="1" Grid.Row="2" Height="10" HorizontalAlignment="Left" Margin="0,327,0,0" Name="progressBar1" VerticalAlignment="Top" Width="403" Grid.ColumnSpan="3" />
+            <Button Content="About" Grid.Column="4" HorizontalAlignment="Left" Name="About_btn" VerticalAlignment="Top" Click="About_btn_Click" Grid.Row="2" Height="32" Width="73" Margin="257,293,0,0" Grid.ColumnSpan="2" />
+            <Image Height="26" HorizontalAlignment="Left" Margin="84,16,0,0" Name="image3" Stretch="Fill" VerticalAlignment="Top" Width="263" Source="/K5TUP;component/Images/Test_Utility.png" Grid.ColumnSpan="3" Grid.RowSpan="3" />
+            <Image Height="64" HorizontalAlignment="Left" Margin="12,-10,0,0" Name="image4" Stretch="Fill" VerticalAlignment="Top" Width="64" Source="/K5TUP;component/Images/K5.ico" Grid.RowSpan="3" />
+            <Image Height="43" HorizontalAlignment="Left" Margin="60,7,0,0" Name="image5" Stretch="Fill" VerticalAlignment="Top" Width="40" Source="/K5TUP;component/Images/LOGO.ico" Grid.Column="4" Grid.RowSpan="3" />
+            <Image Grid.Column="4" Height="43" HorizontalAlignment="Left" Margin="104,7,0,0" Name="image6" Stretch="Fill" VerticalAlignment="Top" Width="143" Source="/K5TUP;component/Images/COSMED.ico" Grid.RowSpan="3" />
+            <Button Grid.Column="2" Grid.Row="2" Height="63" Name="Store_btn" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,42,0,0" Click="Store_btn_Click" >
+                <TextBlock Text="Store Port Setting" TextWrapping="Wrap" ToolTip="store the port settings to K5TUPInfo file"/>
+            </Button>
+            <Image Grid.Column="4" Height="258" HorizontalAlignment="Left" Margin="90,38,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="217" Source="/K5TUP;component/Images/K5b.png" Grid.Row="2" Grid.ColumnSpan="2" />
+            <Button Content="Clear" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource Send_Btn_Style}" Height="32" Width="73" Margin="7,293,0,0" Name="Clear_btn" ToolTip="clear receive box" Click="Clear_btn_Click" />
+            <Image Grid.Column="3" Grid.Row="2" Height="64" HorizontalAlignment="Left" Margin="8,42,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="64" Source="/K5TUP;component/Images/co2.ico" />
+        </Grid>
+	</Border>
+</Window>
